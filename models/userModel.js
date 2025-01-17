@@ -23,3 +23,13 @@ userSchema.pre('save', async function (text){
         next(error);
     }
 });
+
+// Método para comparar senha
+
+useSchema.method.comparePassword = async function (candidatePassword){
+    return bcrypt.compare(candidatePassword, this.password);
+};
+
+//Exportar modelo
+const User = mongoose.model('User', userSchema);
+export default User;
