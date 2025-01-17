@@ -53,3 +53,11 @@ export const loginUser = async (req, res) => {
 };
 
 //Listar usuários
+export const getUsers  = async (req, res ) => {
+    try {
+        const users = await User.find().select('-password');
+        res.json(users);
+    }catch (error) {
+        res.status(500).json({ message: 'Erro no servidor', error});
+    }
+};
