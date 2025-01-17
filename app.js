@@ -3,8 +3,13 @@ import express from 'express'
 import bodyParser from 'body-parser'
 import userRoutes from './routes/userRoutes'
 
+import connectDB from './utils/db'
+
 //Variaveis de ambiente
 dotenv.config()
+
+//configuração do banco
+connectDB()
 
 //iniciando o app
 const app = express()
