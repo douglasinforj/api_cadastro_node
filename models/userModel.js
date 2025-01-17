@@ -12,3 +12,14 @@ const useSchema = new mongoose.Schema(
     { timestamps: true}
 );
 
+//Middleware para hash da senha antes de salvar
+userSchema.pre('save', async function (text){
+    if (!this.isModified('password')) return next();
+    try {
+        const salt = await bcrypt.genSalt(10);
+        this.password =await bcrypt.hash(this.password, salt);
+        next();
+    }catch(error) {
+        next(error);
+    }
+});
