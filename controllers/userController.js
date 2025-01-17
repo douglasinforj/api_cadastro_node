@@ -29,3 +29,27 @@ export const registerUser = async (req, res) => {
 };
 
 
+// Login de usuário
+export const loginUser = async (req, res) => {
+    const { email, password} = req.body;
+
+    try{
+        const user = await User.findOne({ email });
+        if (!user) return res.status(404).json({ message: 'Usuário não encontrado' });
+
+            const isMatch = await bcrypt.compare(password, user.password);
+            if (!isMatch) return res.status(401).json({ massage: 'Senha invalida!'});
+
+            res.json({
+                id: user._id,
+                name: user.name,
+                email: user.email,
+                token: generateToken(user_id),
+            })
+
+    }catch (error){
+        res.status(500).json({ message: 'Erro no servidor', error });
+    }
+};
+
+//Listar usuários
