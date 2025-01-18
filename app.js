@@ -1,9 +1,9 @@
 import dotenv from 'dotenv'
 import express from 'express'
 import bodyParser from 'body-parser'
-import userRoutes from './routes/userRoutes'
+import userRoutes from './routes/userRoutes.js'
 
-import connectDB from './utils/db'
+import connectDB from './utils/db.js'
 
 //Variaveis de ambiente
 dotenv.config()
