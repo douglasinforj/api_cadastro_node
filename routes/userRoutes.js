@@ -1,8 +1,8 @@
 import express from 'express';
 const router = express.Router();
-import authMiddleware from '../middlewares/authMiddleware';
-import { register, loginUser, getUsers, updateUser, deleteUser } from '../controllers/userController';
-import { deflate } from 'zlib';
+import authMiddleware from '../middlewares/authMiddleware.js';
+import { registerUser, loginUser, getUsers, updateUser, deleteUser } from '../controllers/userController.js';
+
 
 
 //Rotas abertas
@@ -14,4 +14,4 @@ router.get('/', authMiddleware, getUsers);
 router.put('/:id', authMiddleware, updateUser);
 router.delete('/:id', authMiddleware, deleteUser)
 
-export default router
+export default router;
