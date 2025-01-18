@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 import bcrypt from 'bcryptjs';
-import { type } from "os";
+
 
 //Definindo o schema do usuário
 const useSchema = new mongoose.Schema(
@@ -13,11 +13,11 @@ const useSchema = new mongoose.Schema(
 );
 
 //Middleware para hash da senha antes de salvar
-userSchema.pre('save', async function (text){
+useSchema.pre('save', async function (text){
     if (!this.isModified('password')) return next();
     try {
         const salt = await bcrypt.genSalt(10);
-        this.password =await bcrypt.hash(this.password, salt);
+        this.password = await bcrypt.hash(this.password, salt);
         next();
     }catch(error) {
         next(error);
@@ -31,5 +31,5 @@ useSchema.method.comparePassword = async function (candidatePassword){
 };
 
 //Exportar modelo
-const User = mongoose.model('User', userSchema);
+const User = mongoose.model('User', useSchema);
 export default User;
