@@ -11,3 +11,4 @@ Projeto de API para cadastro, voltado a treinamento de conceitos e documentaçã
 - MongoDB
 - jsonWebtoken
 - bcryptjs
+- Importação de modulos ES6 (import/export) ao invés do CommonJS (require)
