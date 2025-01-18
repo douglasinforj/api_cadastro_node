@@ -61,3 +61,19 @@ export const getUsers  = async (req, res ) => {
         res.status(500).json({ message: 'Erro no servidor', error});
     }
 };
+
+//Atualizar usuário
+export const updateUser = async (req, res) => {
+    const { id } = req.params;
+    const { name, email } = req.body;
+
+    try {
+        const user = await User.findByIdAndUpdate(id, { name, email }, {new:true });
+        if (!user) return res.status(404).json({ message: 'usuário não encontrado'});
+
+        res.json(user);
+
+    }catch (error) {
+        res.status(500).json({ message: 'Erro no servidor', error});
+    }
+};
