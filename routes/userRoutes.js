@@ -6,7 +6,7 @@ import { registerUser, loginUser, getUsers, updateUser, deleteUser } from '../co
 
 
 //Rotas abertas
-router.post('/registerUser');
+router.post('/registerUser', registerUser);
 router.post('/login', loginUser);
 
 // Rotas protegidas
